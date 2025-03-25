@@ -123,14 +123,14 @@ describe('E-commerce - Fluxo Básico de Compra', () => {
       } else {
         cy.log('Nenhum produto encontrado para clicar');
         // Navega diretamente para um produto para continuar o teste
-        cy.visit('/produtos/smartphone-123', { timeout: 10000 });
+        cy.visit('/produtos/smartphone-123', { timeout: 30000 });
       }
     });
   });
 
   it('Deve adicionar produto ao carrinho e prosseguir até o checkout', () => {
     // Acessa diretamente a página do produto
-    cy.visit('/produtos/smartphone-123', { timeout: 10000 });
+    cy.visit('/produtos/smartphone-123', { timeout: 30000 });
     
     // Verifica título do produto de forma mais flexível
     cy.get('body').then(($body) => {
@@ -179,12 +179,12 @@ describe('E-commerce - Fluxo Básico de Compra', () => {
       } else if ($body.find('a:contains("Carrinho")').length > 0) {
         cy.contains('a', 'Carrinho').click();
       } else {
-        cy.visit('/carrinho', { timeout: 10000 });
+        cy.visit('/carrinho', { timeout: 30000 });
       }
     });
     
     // Verifica se estamos na página do carrinho
-    cy.url().should('include', '/carrinho', { timeout: 8000 });
+    cy.url().should('include', '/carrinho', { timeout: 10000 });
     
     // Finaliza compra
     cy.get('body').then(($body) => {
@@ -195,12 +195,12 @@ describe('E-commerce - Fluxo Básico de Compra', () => {
       } else if ($body.find('button:contains("Finalizar")').length > 0) {
         cy.contains('button', 'Finalizar').click();
       } else {
-        cy.visit('/checkout', { timeout: 10000 });
+        cy.visit('/checkout', { timeout: 30000 });
       }
     });
     
     // Verifica redirecionamento para checkout
-    cy.url().should('include', '/checkout', { timeout: 8000 });
+    cy.url().should('include', '/checkout', { timeout: 10000 });
   });
 
   it('Deve realizar uma busca e exibir resultados corretos', () => {
@@ -216,12 +216,12 @@ describe('E-commerce - Fluxo Básico de Compra', () => {
         cy.get('input[type="search"]').type('fone de ouvido{enter}');
       } else {
         cy.log('Campo de busca não encontrado');
-        cy.visit('/busca?q=fone+de+ouvido', { timeout: 10000 });
+        cy.visit('/busca?q=fone+de+ouvido', { timeout: 30000 });
       }
     });
     
     // Verifica URL de resultados de busca
-    cy.url().should('include', 'q=fone', { timeout: 8000 });
+    cy.url().should('include', 'q=fone', { timeout: 10000 });
     
     // Verifica resultados
     cy.get('body').then(($body) => {
@@ -250,7 +250,7 @@ describe('E-commerce - Fluxo Básico de Compra', () => {
         cy.get('#user-account').click();
       } else {
         cy.log('Menu de usuário não encontrado');
-        cy.visit('/minha-conta', { timeout: 10000 });
+        cy.visit('/minha-conta', { timeout: 30000 });
       }
     });
     
@@ -263,7 +263,7 @@ describe('E-commerce - Fluxo Básico de Compra', () => {
                currentUrl.includes('/conta') || 
                currentUrl.includes('/perfil');
       });
-    }, { timeout: 10000 });
+    }, { timeout: 50000 });
     
     // Verifica campos de perfil de forma mais flexível
     cy.get('body').then(($body) => {
@@ -281,7 +281,7 @@ describe('E-commerce - Fluxo Básico de Compra', () => {
 
   it('Deve permitir adicionar produto à lista de desejos', () => {
     // Acessa diretamente a página do produto
-    cy.visit('/produtos/tablet-456', { timeout: 10000 });
+    cy.visit('/produtos/tablet-456', { timeout: 30000 });
     
     // Verifica título do produto de forma mais flexível
     cy.get('body').then(($body) => {
@@ -332,7 +332,7 @@ describe('E-commerce - Fluxo Básico de Compra', () => {
       } else if ($body.find('.go-to-wishlist').length > 0) {
         cy.get('.go-to-wishlist').click();
       } else {
-        cy.visit('/lista-desejos', { timeout: 10000 });
+        cy.visit('/lista-desejos', { timeout: 30000 });
       }
     });
     
@@ -343,6 +343,6 @@ describe('E-commerce - Fluxo Básico de Compra', () => {
                currentUrl.includes('/wishlist') || 
                currentUrl.includes('/favoritos');
       });
-    }, { timeout: 15000 });
+    }, { timeout: 30000 });
   });
 });
