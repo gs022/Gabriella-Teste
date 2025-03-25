@@ -12,22 +12,13 @@ Acesso à aplicação de e-commerce para teste (URL configurada no arquivo de te
 
 Instalação
 
-Clone este repositório:
-
-git clone https://github.com/seu-usuario/ecommerce-testing.git
+Clone este repositório: https://github.com/gs022/Gabriella-Teste.git
+git clone 
 cd ecommerce-testing 
 
 1 Instale as dependências: npm install
 
 2 Instale o Cypress: npm install cypress --save-dev
-
-Configuração
-
-Verifique e atualize a URL base do e-commerce no arquivo cypress/e2e/ecommerce-test.js: cy.visit('https://example-ecommerce.com');
-
-Atualize as credenciais de login no mesmo arquivo, se necessário:
-cy.get(emailSelector).type('usuario.teste@example.com');
-cy.get(senhaSelector).type('senha123');
 
 Executando os Testes
 Interface Gráfica do Cypress
@@ -57,45 +48,4 @@ Adição ao Carrinho - Verifica a funcionalidade de adicionar produtos ao carrin
 Checkout - Testa o processo de finalização de compra
 Busca de Produtos - Verifica a funcionalidade de busca
 Informações da Conta - Testa o acesso e manipulação de informações de conta
-Lista de Desejos - Verifica a funcionalidade de adicionar produtos à lista de desejos
-
-Características dos Testes
-
-Seletores Resilientes: Os testes utilizam múltiplos seletores para cada elemento, aumentando a resiliência a mudanças na interface.
-Tratamento de Condições Alternativas: Em caso de falha no caminho principal, os testes tentam caminhos alternativos para continuar a execução.
-Tempos de Espera Ajustáveis: Os timeouts podem ser ajustados para se adaptarem a ambientes com diferentes velocidades de resposta.
-
-Personalização
-Modificando Timeouts
-Você pode ajustar os timeouts nos comandos cy.wait() e nas configurações de timeout das asserções para se adaptarem à velocidade do ambiente:
-
-// Aumentando o timeout para ambientes mais lentos
-cy.url().should('include', '/checkout', { timeout: 15000 });
-
-Adicionando Novos Testes
-Para adicionar novos testes, crie um novo bloco it() dentro do describe() existente:
-it('Novo cenário de teste', () => {
-  // Seus passos de teste aqui
-});
-
-Solução de Problemas
-Testes Falhando por Timeout
-Se os testes estiverem falhando por timeout, tente:
-
-Aumentar os valores de timeout nas asserções: cy.url().should('include', '/minha-conta', { timeout: 20000 });
-
-Adicionar esperas explícitas antes de operações críticas: cy.wait(3000); // Espera 3 segundos
-
-Elementos Não Encontrados
-Se os testes estiverem falhando porque elementos não são encontrados:
-
-Verifique se os seletores estão corretos e atualizados
-Adicione mais alternativas de seletores para o elemento
-Use o modo de depuração do Cypress para identificar o problema
-
-Relatórios e Screenshots
-Por padrão, o Cypress armazena screenshots dos testes que falharam em cypress/screenshots/ e vídeos da execução em cypress/videos/.
-Para gerar relatórios mais detalhados, você pode integrar plugins como:
-
-Mochawesome para relatórios HTML detalhados
-Cypress Dashboard para monitoramento e histórico de execuções
+Lista de Desejos - Verifica a funcionalidade de adicionar produtos à lista de desejos.
